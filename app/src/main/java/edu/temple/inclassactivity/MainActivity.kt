@@ -7,6 +7,12 @@ import android.widget.SpinnerAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import androidx.recyclerview.widget.LinearLayoutManager
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +28,14 @@ class MainActivity : AppCompatActivity() {
         typedArray.recycle()
 
         // Display images specified in imageArray in Spinner and RecyclerView
+        if(spinner != null) {
+            spinner.adapter = CustomSpinnerAdapter(this, imageArray)
 
+        }
+        else {
+            recyclerView.adapter = CustomRecyclerAdapter(imageArray)
+            val layoutManager = LinearLayoutManager(this)
+            recyclerView.layoutManager = layoutManager
+        }
     }
 }
